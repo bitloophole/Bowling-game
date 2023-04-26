@@ -1,0 +1,41 @@
+<div class="bowling-score-container">
+    <div class="container">
+        <div class="total-score">Bowling Score Calculator</div>
+        <!-- <div>
+            <h2> Total score is <span *ngIf="!isSpareorStrike">{{totalScore$ | async}}</span>
+                <span *ngIf="isSpareorStrike"> waiting for next round</span></h2>
+        </div> -->
+        <app-header></app-header> 
+        <div class="bordered">
+            <form [formGroup]="scoreForm" (ngSubmit)="calculateScore()">
+                <p class="form-control">
+                    <label for="firstInput">First Input </label><br>
+                    <input type="text" id="firstInput" name="firstInput" (change)="validateInput()" formControlName="first" pattern="[0-9]" required>
+                </p>
+                <p class="form-control">
+                    <label for="secondInput">Second Input</label><br>
+                    <input type="text" id="secondInput" name="secondInput" formControlName="second" pattern="[0-9]">
+                </p>
+                <p *ngIf="isEleventhChance" class="form-control">
+                    <label for="thirdInput">Third Input</label><br>
+                    <input type="text" id="thirdInput" name="thirdInput" formControlName="third" pattern="[0-9]">
+                </p>
+                <div *ngIf="isvalidInput" class="error-msg">Please enter a valid input i.e number and sum of total number should be 10 or less</div>
+                <button type="submit"> Submit</button>
+            </form>
+        </div>
+       
+        <div class="score-table">
+            <div class="bordered" *ngFor="let item of frames$|async; let i = index">
+                <div> Round {{i+1}}
+                    <div>
+                        <span>First ball: {{item.first}} &nbsp;</span>
+                        <span *ngIf="item.first !== 10">Second ball: {{item.second}}</span>
+                        <span *ngIf="item.first == 10">Second ball: X</span>
+                        <span *ngIf="isEleventhChance && i == 9">Third ball: {{item.third}}</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
