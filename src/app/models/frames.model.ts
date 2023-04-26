@@ -1,6 +1,6 @@
 export interface Frame {
     first: number
     second: number
-    third:number  | 0
+    third: number | 0
 }
 

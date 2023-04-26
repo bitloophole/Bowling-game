@@ -1,3 +1,11 @@
+@font-color:#ffffff;
+@error-color: red;
+@font-small: 12px;
+@font-large: 50px;
+@card-color: #f9fafe;
+@border-color: #ccc;
+@button-color:#4CAF50;
+
 .bowling-score-container {
   background-image: url(../../assets/bowling.jpg);
   background-position: center;
@@ -7,27 +15,30 @@
   height: calc(100vh - 2px);
   width: 100%;
 }
+
 .container {
   padding: 40px;
 }
+
 .total-score {
-  font-size: 50px;
+  font-size: @font-large;
   z-index: 999;
-  color: #ffffff;
+  color: @font-color;
   opacity: 0.9;
 }
 
-h2 {
-  color: #ffffff;
+h3 {
+  color: @font-color;
   opacity: 0.9;
 }
+
 .bordered {
-  border: solid 1px black;
+  border: solid 1px  @border-color;
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
   display: inline-block;
-  background-color: #eeeded;
+  background-color: @card-color;
   width: 200px;
 }
 
@@ -36,23 +47,35 @@ label {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 input[type=text] {
   width: 150px !important;
   padding: 6px 12px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid @border-color;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.error-msg {
-  color: red;
-  font-size: 12px;
+button {
+  background-color: @button-color;
+  border: none;
+  color: @font-color;
+  padding: 6px 12px;
+  text-decoration: none;
+  font-size: inherit;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+*:disabled {
+  background-color: #eee;
+  opacity: 1;
+  cursor: not-allowed;
 }
 
-.scoreForm {
-  .form-control {
-    display: inline-block;
-  }
+.error-msg {
+  color:@error-color;
+  font-size: @font-small;
 }

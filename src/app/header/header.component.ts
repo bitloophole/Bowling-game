@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Frame } from '../models/frames.model';
 import { Observable } from 'rxjs';
-import { totalScore } from '../score-state-store/score.selectors';
-import { counterReducer } from '../score-state-store/score.reducer';
-import { provideMockStore } from '@ngrx/store/testing';
-import { StoreModule } from '@ngrx/store';
+import { calculateTotalScore } from '../score-state-store/score.selectors';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +12,7 @@ import { StoreModule } from '@ngrx/store';
 export class HeaderComponent {
 
   constructor(private store: Store<Frame[]>) {
-    this.totalScore$ = store.select(totalScore);
+    this.totalScore$ = store.select(calculateTotalScore);
   }
 
   totalScore$: Observable<number>;

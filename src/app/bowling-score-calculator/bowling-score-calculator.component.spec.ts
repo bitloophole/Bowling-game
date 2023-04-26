@@ -28,16 +28,16 @@ describe('BowlingScoreCalculatorComponent', () => {
     it('should add frame to frames array and reset the form', () => {
       // arrange
       const form = component.scoreForm;
-      form.patchValue({ first: '5', second: '3'});
+      form.patchValue({ first: 5, second: 3, third: null});
 
       // act
       component.calculateScore();
 
-      // assert
-      // expect(component.frames.length).toEqual(1);
-      // expect(component.frames[0]).toEqual(
-      //   jasmine.objectContaining({ first: 5, second: 3, third: 0})
-      // );
+      //assert
+      expect(component.frameLength).toEqual(0);
+      expect(component.frames$).toEqual(
+        jasmine.objectContaining({})
+      );
       expect(form.value).toEqual({
         first: null,
         second: null,
@@ -45,6 +45,81 @@ describe('BowlingScoreCalculatorComponent', () => {
       });
     });   
   });
+
+  
+  describe('calculateBowlingScore', () => {
+    it('should take frames array as input and return the score of the game', () => {
+      // arrange
+      const frames = [{ first: 5, second: 3}]
+
+      // act
+      let score = component.calculateBowlingScore(frames);
+
+      //assert
+      expect(score).toEqual(
+        jasmine.objectContaining({'score':8})
+      );
+    });  
+    
+    it('should take frames array as input and return the score of the game', () => {
+      // arrange
+      const frames = [{ first: 5, second: 3},{ first: 5, second: 5},{ first: 4, second: 3},{ first:10, second: null},
+        { first: 6, second: 3},{ first: 3, second: 7},{ first: 4, second: 2} ];
+
+      // act
+      let score = component.calculateBowlingScore(frames);
+
+      //assert
+      expect(score).toEqual(
+        jasmine.objectContaining({'score':77})
+      );
+    });
+
+    it('should take frames array as input and return the score of the game', () => {
+      // arrange
+      const frames = [{ first: 5, second: 3},{ first: 5, second: 5},{ first: 4, second: 3},{ first:10, second: null},
+        { first: 6, second: 3},{ first: 3, second: 7},{ first: 4, second: 2}, { first: 8, second: 2}, { first: 4, second: 6}, { first: 10, second: 4, third :5}];
+
+      // act
+      let score = component.calculateBowlingScore(frames);
+
+      //assert
+      expect(score).toEqual(
+        jasmine.objectContaining({'score':130})
+      );
+    });
+
+    it('should take frames array as input and return the score of the game', () => {
+      // arrange
+      const frames = [{ first: 5, second: 3},{ first: 5, second: 5},{ first: 4, second: 3},{ first:10, second: null},
+        { first: 6, second: 3},{ first: 3, second: 7},{ first: 4, second: 2} ];
+
+      // act
+      let score = component.calculateBowlingScore(frames);
+
+      //assert
+      expect(score).toEqual(
+        jasmine.objectContaining({'score':77})
+      );
+    });
+
+    it('Check maximum score of the game', () => {
+      // arrange
+      const frames =  [{ first: 10, second: 0},{ first: 10, second: 0},{ first: 10, second: 0},{ first:10, second: 0},
+        { first: 10, second: 0},{ first: 10, second: 0},{ first: 10, second: 0}, { first: 10, second: 0}, { first: 10, second: 0}, { first: 10, second: 10, third :10}];
+
+      // act
+      let score = component.calculateBowlingScore(frames);
+
+      //assert
+      expect(score).toEqual(
+        jasmine.objectContaining({'score':300})
+      );
+    });
+  });
+
+
+
 
   it('should create', () => {
     expect(component).toBeTruthy();

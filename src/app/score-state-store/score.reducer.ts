@@ -1,7 +1,7 @@
 import { addRound } from 'src/app/score-state-store/score.actions';
 import { Frame } from '../models/frames.model';
 
-const initialState: Frame[] = []
+const initialState: Frame [] = []
 
 import { createReducer, on } from '@ngrx/store';
 
@@ -13,7 +13,6 @@ export const counterReducer = createReducer(
     return score;
   }),
 );
-
 
 
 

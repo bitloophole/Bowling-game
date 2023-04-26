@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Frame } from '../models/frames.model';
 
-export const totalScore = createSelector(
+export const calculateTotalScore = createSelector(
     createFeatureSelector('score'),
     (state:Frame[]) => {
         if(state.length) {
@@ -18,6 +18,8 @@ export const totalScore = createSelector(
                     const secondNextFrame = state[i + 2];
                     if (secondNextFrame) {
                       totalScore += secondNextFrame.first;  // add the first roll of the next frame after the next frame
+                    } else if(i==8 && !secondNextFrame) { //for the perfect score
+                      totalScore += nextFrame.second;
                     }
                   } else {  // otherwise
                     totalScore += nextFrame.first + nextFrame.second;  // add the score of the next frame

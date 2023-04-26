@@ -22,10 +22,8 @@ describe('AppComponent', () => {
         BowlingScoreCalculatorComponent,
         HeaderComponent
       ],
-     //  providers: [provideMockStore({})]
+      providers: [provideMockStore({})]
     }).compileComponents();
-
-    
   });
 
   it('should create the app', () => {
